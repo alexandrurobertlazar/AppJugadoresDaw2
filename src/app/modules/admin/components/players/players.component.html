@@ -1,0 +1,24 @@
+<div class="container pt-5 pb-5 relative">
+    <div class="absolute w-full h-full backdrop-blur-sm flex flex-row items-center justify-center bg-white rounded-md" *ngIf="playerSelected != null">
+      <input type="text" [(ngModel)]="playerSelected.name">
+      <input type="text" [(ngModel)]="playerSelected.position">
+      <button type="button" class="btn btn-primary">Save new player data</button>
+    </div>
+    <div class="w-full flex flex-row justify-end mx-4º">
+      <button type="button" class="btn btn-primary" (click)="selectNewPlayer()">Add a new player</button>
+    </div>
+    <div class="col-12">
+        <div class="d-flex flex-wrap justify-content-between">
+            <div class="card shadow mt-2" *ngFor="let player of players">
+                <div class="card-body">
+                    <h5 class="card-title font-bold">{{player.name}}</h5>
+                    <p class="card-text">{{player.position}}</p>
+                    <div class="flex flex-col">
+                      <a class="btn btn-primary my-2" (click)="selectPlayer(player)">Edit player</a>
+                      <a class="btn btn-primary my-2" (click)="deletePlayer(player)">Remove player</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

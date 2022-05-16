@@ -6,12 +6,11 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
-import { ContactComponent } from './components/contact/contact.component';
-import { ServicesComponent } from './components/services/services.component';
-import { AboutComponent } from './components/about/about.component';
+import { PlayersComponent } from './components/players/players.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AdminDashboardComponent, HeaderComponent, FooterComponent, HomeComponent, ContactComponent, ServicesComponent, AboutComponent],
-  imports: [CommonModule, AdminRoutingModule],
+  declarations: [AdminDashboardComponent, HeaderComponent, FooterComponent, HomeComponent, PlayersComponent],
+  imports: [CommonModule, AdminRoutingModule, FormsModule],
 })
 export class AdminModule {}
