@@ -9,7 +9,9 @@ import { PlayersService } from 'src/app/services/players.service';
 })
 export class PlayersComponent implements OnInit {
   @Output() playerDeleted = new EventEmitter();
-  public playerSelected: Player|any = null;
+  public playerSelected: Player | any = null;
+  public isAdding: boolean = false;
+
   constructor(private playersService: PlayersService) { }
 
   ngOnInit(): void {
@@ -32,13 +34,36 @@ export class PlayersComponent implements OnInit {
   }
 
   selectNewPlayer(): void {
+    if (this.playerSelected !== null) {
+      this.closeModal()
+      return
+    }
     const lastId = this.players.length+1 + "";
     const newPlayer: Player = {
       id: lastId,
       name: "",
       position: "",
     }
+    this.isAdding = true;
     this.selectPlayer(newPlayer)
   }
 
+  addPlayer() {
+    if (!this.players.some(p => p.id === this.playerSelected.id)) {
+      this.players.push(this.playerSelected)
+    } else {
+      this.players.forEach((p) => {
+        if (p.id === this.playerSelected.id) {
+          p.name = this.playerSelected.name
+          p.position = this.playerSelected.position
+        }
+      })
+    }
+    this.closeModal()
+  }
+
+  closeModal() {
+    this.playerSelected = null;
+    this.isAdding = false;
+  }
 }

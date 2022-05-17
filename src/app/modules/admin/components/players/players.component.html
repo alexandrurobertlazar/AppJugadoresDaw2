@@ -1,11 +1,18 @@
-<div class="container pt-5 pb-5 relative">
-    <div class="absolute w-full h-full backdrop-blur-sm flex flex-row items-center justify-center bg-white rounded-md" *ngIf="playerSelected != null">
-      <input type="text" [(ngModel)]="playerSelected.name">
-      <input type="text" [(ngModel)]="playerSelected.position">
-      <button type="button" class="btn btn-primary">Save new player data</button>
-    </div>
-    <div class="w-full flex flex-row justify-end mx-4º">
-      <button type="button" class="btn btn-primary" (click)="selectNewPlayer()">Add a new player</button>
+<div class="container pt-5 pb-5 h-screen">
+    <div class="w-full flex flex-row justify-between">
+      <div class="flex flex-row space-x-2" *ngIf="playerSelected !== null">
+        <div class="flex flex-col">
+          <label for="player-name">Player's name</label>
+          <input name="player-name" type="text" class="rounded-md border border-black" [(ngModel)]="playerSelected.name">
+        </div>
+        <div class="flex flex-col">
+          <label for="player-position">Player's position</label>
+          <input name="player-position" type="text" class="rounded-md border border-black" [(ngModel)]="playerSelected.position">
+        </div>
+        <button type="button" class="btn btn-primary bg-blue-600" (click)="closeModal()" *ngIf="!isAdding">Close</button>
+        <button type="button" class="btn btn-primary bg-blue-600" (click)="addPlayer()" *ngIf="isAdding">Save</button>
+      </div>
+      <button type="button" class="btn btn-primary bg-blue-600" (click)="selectNewPlayer()">Add a new player</button>
     </div>
     <div class="col-12">
         <div class="d-flex flex-wrap justify-content-between">
